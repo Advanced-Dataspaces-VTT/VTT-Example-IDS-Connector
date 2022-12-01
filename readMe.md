@@ -13,7 +13,7 @@ Before installation, the following prerequisites should be installed:
 
 <b>1.1 Clone the repository and unzip the package</b>
 
-git clone  https://github.com/IlkkaNis/IDSTestbed_client_connector.git
+git clone https://github.com/Advanced-Dataspaces-VTT/VTT-Example-IDS-Connector.git
 
 Navigate to folder "IDSTestbed_client_connector"
 
