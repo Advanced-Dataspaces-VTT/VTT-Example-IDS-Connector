@@ -34,7 +34,9 @@ Step 2: In folder "VTT-Example-IDS-Connector/VTT_connector/src/main/resources/" 
 ```
 
 <b>1.3 Build the connector</b>
+
 Navigate to folder "VTT-Example-IDS-Connector/VTT_connector/" and type (do not forget to include the dot in the end) 
+
 ```yaml
 
 sudo docker build -t dsca . 
