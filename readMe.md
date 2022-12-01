@@ -22,7 +22,7 @@ Unzip the file 'VTT connector.zip'
 (NOTE: The official documentation of the dataspace connector can be found at https://international-data-spaces-association.github.io/DataspaceConnector/)
 
 <b> 1.2. Configure the connector (Optional step)</b> <br>
-You can change the connector's self description by editing the file /IDSTestbed_client_connector/VTT connector/DataspaceConnector-main/src/main/resources/conf/config.json.
+You can change the connector's self description by editing the file /VTT-Example-IDS-Connector/VTT_connector/src/main/resources/conf/config.json.
 A typical configuration task is, for example, to edit the ID, title or description of the connector. The ID of the connector can be found at:
 
 ```
@@ -32,13 +32,13 @@ A typical configuration task is, for example, to edit the ID, title or descripti
 ```
 You can also change the port where the connector is deployed on (by default the connector runs on port 8081): 
 ```
-Step 1: In folder "IDSTestbed_client_connector/VTT connector/DataspaceConnector-main" open the "Dockerfile" file and edit the  EXPOSE section (e.g. EXPOSE 8080)
-Step 2: In folder "DataspaceConnector/src/main/resources"  open the file "application.properties" and edit the section "server.port" section (e.g. server.port=8080)
+Step 1: In folder "VTT-Example-IDS-Connector/VTT_connector/" open the "Dockerfile" file and edit the  EXPOSE section (e.g. EXPOSE 8080)
+Step 2: In folder "VTT-Example-IDS-Connector/VTT_connector/src/main/resources/"  open the file "application.properties" and edit the section "server.port" section (e.g. server.port=8080)
 
 ```
 
 <b>1.3 Build the connector</b>
-Navigate to folder "IDSTestbed_client_connector/VTT connector/DataspaceConnector-main" and type (do not forget to include the dot in the end) 
+Navigate to folder "VTT-Example-IDS-Connector/VTT_connector/" and type (do not forget to include the dot in the end) 
 ```yaml
 
 sudo docker build -t dsca . 
@@ -60,8 +60,7 @@ VTT Data Space Innovation Lab provides an experimental data space that can be us
 In the following, Postman tool is utilized for managing the connector.
 
 <b>2.1 Download the data consumer request collection and import it to Postman</b>
-- Navigate to the folder "Postman_collections" in Github repository and download the file "data_consumer_and_provider.zip".
-- Unzip the file and import the json files into to your Postman application ("Import" button  + select file)
+- Navigate to the folder "Postman_collections" in Github repository and import the json files into to your Postman application ("Import" button  + select file)
 - You should see two new collections in your Postman: "Consume data resource" and "Provide data resource".
 
 <b>2.2 Test data retrieval from Data Space Innovation Lab's connector </b> <br> <br>
