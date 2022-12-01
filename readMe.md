@@ -11,13 +11,9 @@ Before installation, the following prerequisites should be installed:
 
 <h2> 1. Installation </h2>
 
-<b>1.1 Clone the repository and unzip the package</b>
+<b>1.1 Clone the repository</b>
 
 git clone https://github.com/Advanced-Dataspaces-VTT/VTT-Example-IDS-Connector.git
-
-Navigate to folder "IDSTestbed_client_connector"
-
-Unzip the file 'VTT connector.zip' 
 
 (NOTE: The official documentation of the dataspace connector can be found at https://international-data-spaces-association.github.io/DataspaceConnector/)
 
