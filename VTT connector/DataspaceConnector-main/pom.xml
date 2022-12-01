@@ -25,7 +25,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.3</version>
+		<version>2.7.5</version>
 		<relativePath/>
 		<!-- lookup parent from repository -->
 	</parent>
@@ -57,7 +57,7 @@
 
 	<properties>
 		<!-- General -->
-		<revision>8.0.1</revision>
+		<revision>8.0.2</revision>
 		<email>support@sovity.de</email>
 
 		<!-- Build info -->
@@ -69,53 +69,54 @@
 		<ids-messaging-services.version>7.0.0</ids-messaging-services.version>
 
 		<!-- Dependencies -->
-		<springframework.version>5.3.22</springframework.version>
-		<swagger-annotations.version>1.6.6</swagger-annotations.version>
+		<springframework.version>5.3.23</springframework.version>
+		<swagger-annotations.version>1.6.9</swagger-annotations.version>
 		<okhttp.version>4.10.0</okhttp.version>
 		<modelmapper.version>3.1.0</modelmapper.version>
-		<jackson.version>2.13.4</jackson.version>
-		<jackson-databind.version>2.13.3</jackson-databind.version>
-		<springdoc.version>1.6.11</springdoc.version>
-		<equalsverifier.version>3.10.1</equalsverifier.version>
-		<opentelemetry.version>1.17.0</opentelemetry.version>
-		<opentelemetry-semconv.version>1.17.0-alpha</opentelemetry-semconv.version>
+		<jackson-databind.version>2.14.1</jackson-databind.version>
+		<jackson.version>2.14.1</jackson.version>
+		<springdoc.version>1.6.13</springdoc.version>
+		<equalsverifier.version>3.11.1</equalsverifier.version>
+		<opentelemetry-semconv.version>1.20.1-alpha</opentelemetry-semconv.version>
+		<opentelemetry.version>1.20.1</opentelemetry.version>
 		<jaeger.version>3.3.1</jaeger.version>
 		<freemarker.version>2.3.31</freemarker.version>
-		<camel.version>3.18.1</camel.version>
-		<idscp2.version>0.11.1</idscp2.version>
-		<protobuf.version>3.21.5</protobuf.version>
+		<camel.version>3.19.0</camel.version>
+		<idscp2.version>0.13.3</idscp2.version>
+		<protobuf.version>3.21.9</protobuf.version>
 		<jsonwebtoken.version>0.11.5</jsonwebtoken.version>
+		<spring-security-core.version>5.7.5</spring-security-core.version>
 
 
 		<!-- Plugins -->
 		<maven-enforcer-plugin.version>3.1.0</maven-enforcer-plugin.version>
 		<maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
 		<maven-javadoc-plugin.version>3.4.1</maven-javadoc-plugin.version>
-		<pitest-junit5-plugin.version>1.0.0</pitest-junit5-plugin.version>
-		<pitest.version>1.9.5</pitest.version>
-		<tidy.version>1.1.0</tidy.version>
+		<pitest-junit5-plugin.version>1.1.0</pitest-junit5-plugin.version>
+		<pitest.version>1.9.11</pitest.version>
+		<tidy.version>1.2.0</tidy.version>
 		<maven-site-plugin.version>3.12.1</maven-site-plugin.version>
 		<maven-project-info-reports-plugin.version>3.4.1</maven-project-info-reports-plugin.version>
-		<spotbugs.version>4.7.2</spotbugs.version>
-		<spotbugs.plugin.version>4.7.1.1</spotbugs.plugin.version>
+		<spotbugs.version>4.7.3</spotbugs.version>
+		<spotbugs.plugin.version>4.7.2.1</spotbugs.plugin.version>
 		<findsecbugs-plugin.version>1.12.0</findsecbugs-plugin.version>
 		<checkstyle-plugin.version>3.2.0</checkstyle-plugin.version>
-		<checkstyle.version>10.3.3</checkstyle.version>
+		<checkstyle.version>10.5.0</checkstyle.version>
 		<jacoco.version>0.8.8</jacoco.version>
-		<pmd.version>6.49.0</pmd.version>
-		<pmd-plugin.version>3.18.0</pmd-plugin.version>
-		<versions-maven-plugin.version>2.11.0</versions-maven-plugin.version>
+		<pmd.version>6.52.0</pmd.version>
+		<pmd-plugin.version>3.19.0</pmd-plugin.version>
+		<versions-maven-plugin.version>2.13.0</versions-maven-plugin.version>
 		<license-plugin.version>4.1</license-plugin.version>
 		<dms.version>2.2.0</dms.version>
 		<taglist.version>3.0.0</taglist.version>
-		<dependency-check.version>7.1.2</dependency-check.version>
+		<dependency-check.version>7.3.2</dependency-check.version>
 		<jxr.version>3.3.0</jxr.version>
-		<dependency-check.version>7.1.2</dependency-check.version>
-		<jxr.version>3.3.0</jxr.version>
+		<snakeyaml.version>1.32</snakeyaml.version>
+
 
 		<!-- Supported Databases -->
 		<h2.version>2.1.212</h2.version>
-		<postgres.version>42.5.0</postgres.version>
+		<postgres.version>42.5.1</postgres.version>
 
 		<!-- License -->
 		<license_name>Apache License, Version 2.0</license_name>
@@ -178,9 +179,6 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
-
-
 
 		<!-- Spring Boot -->
 		<dependency>
@@ -307,7 +305,7 @@
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
-			<version>9.2.2</version>
+			<version>9.8.3</version>
 		</dependency>
 
 		<dependency>
@@ -329,6 +327,10 @@
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-starter-logging</artifactId>
 				</exclusion>
+				<exclusion>
+					<groupId>org.springframework.security</groupId>
+					<artifactId>spring-security-core</artifactId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 
@@ -348,6 +350,12 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.security</groupId>
+					<artifactId>spring-security-core</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>
@@ -360,6 +368,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-log4j2</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>${spring-security-core.version}</version>
+		</dependency>
+
 
 		<!--JSON-->
 		<dependency>
@@ -440,6 +455,12 @@
 			<groupId>org.springdoc</groupId>
 			<artifactId>springdoc-openapi-security</artifactId>
 			<version>${springdoc.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.security</groupId>
+					<artifactId>spring-security-core</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-hateoas -->
@@ -479,7 +500,7 @@
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-text</artifactId>
-			<version>1.9</version>
+			<version>1.10.0</version>
 		</dependency>
 
 		<dependency>
@@ -606,7 +627,7 @@
 		<dependency>
 			<groupId>org.bitbucket.b_c</groupId>
 			<artifactId>jose4j</artifactId>
-			<version>0.8.0</version>
+			<version>0.9.2</version>
 		</dependency>
 
 	</dependencies>
@@ -1156,4 +1177,3 @@
 		</profile>
 	</profiles>
 </project>
-
