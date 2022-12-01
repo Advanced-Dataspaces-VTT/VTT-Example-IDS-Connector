@@ -1,0 +1,694 @@
+{
+	"info": {
+		"_postman_id": "3f5b4d99-0c42-4108-8261-95564de99dfd",
+		"name": "Provide data resource Copy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17677312"
+	},
+	"item": [
+		{
+			"name": "Create catalog",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const createdCatalogURL = pm.response.json()[\"_links\"][\"self\"][\"href\"];\r",
+							"\r",
+							"console.log(createdCatalogURL);\r",
+							"console.log(createdCatalogURL.substring(createdCatalogURL.lastIndexOf('/') + 1));\r",
+							"\r",
+							"\r",
+							"pm.collectionVariables.set(\"createdCatalogURL\", createdCatalogURL);\r",
+							"pm.collectionVariables.set(\"createdCatalogID\", createdCatalogURL.substring(createdCatalogURL.lastIndexOf('/') + 1));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"strictSSL": false
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Example data catalog\",\r\n  \"description\": \"Contains example data artifacts to be exchanged through IDS connectors\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{connectorURL}}/api/catalogs",
+					"host": [
+						"{{connectorURL}}"
+					],
+					"path": [
+						"api",
+						"catalogs"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create representation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const createdRepresentationURL = pm.response.json()[\"_links\"][\"self\"][\"href\"];\r",
+							"\r",
+							"console.log(createdRepresentationURL);\r",
+							"console.log(createdRepresentationURL.substring(createdRepresentationURL.lastIndexOf('/') + 1));\r",
+							"\r",
+							"pm.collectionVariables.set(\"createdRepresentationURL\", createdRepresentationURL);\r",
+							"pm.collectionVariables.set(\"createdRepresentationID\", createdRepresentationURL.substring(createdRepresentationURL.lastIndexOf('/') + 1));\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"strictSSL": false
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Example_data_representation\",\r\n  \"mediaType\": \"json\",\r\n  \"language\": \"English\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{connectorURL}}/api/representations",
+					"host": [
+						"{{connectorURL}}"
+					],
+					"path": [
+						"api",
+						"representations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create offer (resource)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const createdResourceURL = pm.response.json()[\"_links\"][\"self\"][\"href\"];\r",
+							"\r",
+							"console.log(createdResourceURL);\r",
+							"console.log(createdResourceURL.substring(createdResourceURL.lastIndexOf('/') + 1));\r",
+							"\r",
+							"pm.collectionVariables.set(\"createdResourceURL\", createdResourceURL);\r",
+							"pm.collectionVariables.set(\"createdResourceID\", createdResourceURL.substring(createdResourceURL.lastIndexOf('/') + 1));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"strictSSL": false
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Test resource\",\r\n  \"description\": \"Example data submitted through IDS\",\r\n  \"keywords\": [\r\n    \"example data\", \"project\",\"ids\",\"data\"\r\n  ],\r\n  \"publisher\": \"https://example.com/\",\r\n  \"sovereign\": \"https://example.com/\",\r\n  \"paymentMethod\": \"undefined\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{connectorURL}}/api/offers",
+					"host": [
+						"{{connectorURL}}"
+					],
+					"path": [
+						"api",
+						"offers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add resource to catalog",
+			"protocolProfileBehavior": {
+				"strictSSL": false
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n  \"{{createdResourceURL}}\"\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{connectorURL}}/api/catalogs/{{createdCatalogID}}/offers",
+					"host": [
+						"{{connectorURL}}"
+					],
+					"path": [
+						"api",
+						"catalogs",
+						"{{createdCatalogID}}",
+						"offers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add representation to resource",
+			"protocolProfileBehavior": {
+				"strictSSL": false
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n  \"{{createdRepresentationURL}}\"\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{connectorURL}}/api/offers/{{createdResourceID}}/representations",
+					"host": [
+						"{{connectorURL}}"
+					],
+					"path": [
+						"api",
+						"offers",
+						"{{createdResourceID}}",
+						"representations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create contract",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const createdContractURL = pm.response.json()[\"_links\"][\"self\"][\"href\"];\r",
+							"\r",
+							"console.log(createdContractURL);\r",
+							"console.log(createdContractURL.substring(createdContractURL.lastIndexOf('/') + 1));\r",
+							"\r",
+							"pm.collectionVariables.set(\"createdContractURL\", createdContractURL);\r",
+							"pm.collectionVariables.set(\"createdContractID\", createdContractURL.substring(createdContractURL.lastIndexOf('/') + 1));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"strictSSL": false
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"ExampleContract\",\r\n  \"description\": \"Example IDS contract for a data resource\",\r\n  \"start\": \"2022-01-01T13:33:44.995+02:00\",\r\n  \"end\": \"2023-01-01T13:33:44.995+02:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{connectorURL}}/api/contracts",
+					"host": [
+						"{{connectorURL}}"
+					],
+					"path": [
+						"api",
+						"contracts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create rule",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const createdRuleURL = pm.response.json()[\"_links\"][\"self\"][\"href\"];\r",
+							"\r",
+							"console.log(createdRuleURL);\r",
+							"console.log(createdRuleURL.substring(createdRuleURL.lastIndexOf('/') + 1));\r",
+							"\r",
+							"pm.collectionVariables.set(\"createdRuleURL\", createdRuleURL);\r",
+							"pm.collectionVariables.set(\"createdRuleID\", createdRuleURL.substring(createdRuleURL.lastIndexOf('/') + 1));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"strictSSL": false
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Example Rule Provide Access\", \r\n    \"description\": \"This is an example rule containing a provide access usage policy\", \r\n    \"value\": \"{\\n\\\"@context\\\" : {\\n\\\"ids\\\" : \\\"https://w3id.org/idsa/core/\\\",\\n\\\"idsc\\\" : \\\"https://w3id.org/idsa/code/\\\"\\n},\\n\\\"@type\\\": \\\"ids:Permission\\\",\\n\\\"@id\\\": \\\"https://w3id.org/idsa/autogen/permission/cf1cb758-b96d-4486-b0a7-f3ac0e289588\\\",\\n\\\"ids:action\\\": [\\n{\\n\\\"@id\\\": \\\"idsc:USE\\\"\\n}\\n],\\n\\\"ids:description\\\": [\\n{\\n\\\"@value\\\": \\\"provide-access\\\",\\n\\\"@type\\\": \\\"http://www.w3.org/2001/XMLSchema#string\\\"\\n}\\n],\\n\\\"ids:title\\\": [\\n{\\n\\\"@value\\\": \\\"Example Usage Policy\\\",\\n\\\"@type\\\": \\\"http://www.w3.org/2001/XMLSchema#string\\\"\\n}\\n]\\n}\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{connectorURL}}/api/rules",
+					"host": [
+						"{{connectorURL}}"
+					],
+					"path": [
+						"api",
+						"rules"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add rule to contract",
+			"protocolProfileBehavior": {
+				"strictSSL": false
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n  \"{{createdRuleURL}}\"\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{connectorURL}}/api/contracts/{{createdContractID}}/rules",
+					"host": [
+						"{{connectorURL}}"
+					],
+					"path": [
+						"api",
+						"contracts",
+						"{{createdContractID}}",
+						"rules"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add contract to resource",
+			"protocolProfileBehavior": {
+				"strictSSL": false
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n  \"{{createdContractURL}}\"\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{connectorURL}}/api/offers/{{createdResourceID}}/contracts",
+					"host": [
+						"{{connectorURL}}"
+					],
+					"path": [
+						"api",
+						"offers",
+						"{{createdResourceID}}",
+						"contracts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create artifact",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const createdArtifactURL = pm.response.json()[\"_links\"][\"self\"][\"href\"];\r",
+							"\r",
+							"console.log(createdArtifactURL);\r",
+							"console.log(createdArtifactURL.substring(createdArtifactURL.lastIndexOf('/') + 1));\r",
+							"\r",
+							"pm.collectionVariables.set(\"createdArtifactURL\", createdArtifactURL);\r",
+							"pm.collectionVariables.set(\"createdArtifactID\", createdArtifactURL.substring(createdArtifactURL.lastIndexOf('/') + 1));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"strictSSL": false
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"ExampleStringSubmittedThroughIDS\",\r\n  \"description\": \"This is an example string statement that is exchanged via IDS secure pipeline\",\r\n  \"automatedDownload\": \"false\",\r\n    \"value\": \"testing testing testing\"\r\n  \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{connectorURL}}/api/artifacts",
+					"host": [
+						"{{connectorURL}}"
+					],
+					"path": [
+						"api",
+						"artifacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add artifact to representation",
+			"protocolProfileBehavior": {
+				"strictSSL": false
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n  \"{{createdArtifactURL}}\"\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{connectorURL}}/api/representations/{{createdRepresentationID}}/artifacts",
+					"host": [
+						"{{connectorURL}}"
+					],
+					"path": [
+						"api",
+						"representations",
+						"{{createdRepresentationID}}",
+						"artifacts"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "connectorURL",
+			"value": "https://130.188.160.82:8081",
+			"type": "string"
+		},
+		{
+			"key": "createdCatalogURL",
+			"value": ""
+		},
+		{
+			"key": "createdRepresentationURL",
+			"value": ""
+		},
+		{
+			"key": "createdResourceURL",
+			"value": ""
+		},
+		{
+			"key": "createdCatalogID",
+			"value": ""
+		},
+		{
+			"key": "createdResourceID",
+			"value": ""
+		},
+		{
+			"key": "createdContractURL",
+			"value": ""
+		},
+		{
+			"key": "createdContractID",
+			"value": ""
+		},
+		{
+			"key": "createdRuleURL",
+			"value": ""
+		},
+		{
+			"key": "createdRuleID",
+			"value": ""
+		},
+		{
+			"key": "createdArtifactURL",
+			"value": ""
+		},
+		{
+			"key": "createdArtifactID",
+			"value": ""
+		},
+		{
+			"key": "createdRepresentationID",
+			"value": ""
+		}
+	]
+}
