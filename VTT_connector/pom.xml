@@ -652,7 +652,7 @@
 			<name>maven-snapshots</name>
 			<url>https://maven.iais.fraunhofer.de/artifactory/eis-ids-public</url>
 			<snapshots>
-				<enabled>false</enabled>
+				<enabled>true</enabled>
 			</snapshots>
 			<releases>
 				<enabled>true</enabled>
@@ -661,10 +661,10 @@
 		<!-- exclude old IAIS http-repo from dependencies, not reachable any more -->
 		<repository>
 			<releases>
-				<enabled>false</enabled>
+				<enabled>true</enabled>
 			</releases>
 			<snapshots>
-				<enabled>false</enabled>
+				<enabled>true</enabled>
 			</snapshots>
 			<id>eis-public-repo</id>
 			<url>http://maven.iais.fraunhofer.de/artifactory/eis-ids-public</url>
