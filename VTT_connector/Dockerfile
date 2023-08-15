@@ -51,7 +51,7 @@ WORKDIR /app
 COPY --from=builder /app/spring-boot-loader/ ./
 COPY --from=builder /app/dependencies/ ./
 COPY --from=builder /app/application/ ./
-EXPOSE 8081
+EXPOSE 8083
 EXPOSE 29292
 USER nonroot
 ENTRYPOINT ["java","org.springframework.boot.loader.JarLauncher"]
