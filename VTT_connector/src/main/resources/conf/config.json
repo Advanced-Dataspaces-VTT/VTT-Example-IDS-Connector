@@ -57,6 +57,6 @@
     "@id" : "idsc:CONNECTOR_ONLINE"
   },
   "ids:keyStore" : {
-    "@id" : "file:///conf/osmeproject.democonnector1.fi.p12"
+    "@id" : "file:///conf/vtt_test_certificate.p12"
   }
 }
