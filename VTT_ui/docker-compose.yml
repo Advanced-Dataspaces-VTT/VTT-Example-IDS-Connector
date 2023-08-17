@@ -1,11 +1,14 @@
 version: '3.5'
 
 services:
-    dataspace-connector-ui:
-        image: dataspace-connector-ui
+    ui:
+        build:
+            context: .
         environment:
-            - CONNECTOR_URL=https://localhost:8080
-            - CONNECTOR_USER=admin
-            - CONNECTOR_PASSWORD=password
+        - CONNECTOR_URL=https://localhost:8081
+        - CONNECTOR_USER=admin
+        - CONNECTOR_PASSWORD=password
         ports:
-            - "8083:8083"
+        - "8083:8083"
+        depends_on:
+        - connector
