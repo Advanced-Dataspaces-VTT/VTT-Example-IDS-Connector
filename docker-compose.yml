@@ -26,19 +26,21 @@ services:
     depends_on:
       - postgres
 
-  #ui:
-  #  build:
-  #    context: ./VTT_ui/.
-  #  container_name: 'vtt-connector-ui'
-  #  environment:
-  #    - CONNECTOR_URL=https://localhost:8081
-  #    - CONNECTOR_USER=admin
-  #    - CONNECTOR_PASSWORD=password
-  #    - DEBUG=true
-  #  ports:
-  #    - "8082:8082"
-  #  depends_on:
-  #    - connector
+  ui:
+    build:
+      context: ./VTT_ui/.
+    container_name: 'vtt-connector-ui'
+    environment:
+      - CONNECTOR_URL=http://connector:8081
+      - CONNECTOR_USER=admin
+      - CONNECTOR_PASSWORD=password
+      - DEBUG=true
+    ports:
+      - 8083:8083
+    depends_on:
+      - connector
+    networks:
+      - connector
 
 
 networks:

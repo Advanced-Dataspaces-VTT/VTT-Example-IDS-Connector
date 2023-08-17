@@ -1,20 +1,11 @@
-# Use the official Node.js image as the base
 FROM node:14
-
-# Set the working directory
 WORKDIR /usr/src/app
-
-# Copy package.json and package-lock.json
 COPY package*.json ./
-
-# Install project dependencies
-RUN npm install
-
-# Copy the rest of the application files
 COPY . .
-
-# Expose the port that the Vue.js app will run on
-EXPOSE 8082
-
-# Start the development server
-CMD ["npm", "run", "serve"]
+RUN npm install --no-audit --unsafe-perm
+RUN npm run-script build
+RUN npm prune --production
+RUN sed -i "s@http://localhost:8083@@g" dist/js/*.js
+RUN groupadd -r nonroot && useradd -r -g nonroot nonroot
+USER nonroot
+CMD ["npm", "run", "backend"]
