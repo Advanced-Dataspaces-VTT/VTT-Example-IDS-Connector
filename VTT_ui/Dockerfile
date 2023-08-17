@@ -1,23 +1,13 @@
 FROM node:14
-
-# Set the working directory
+LABEL org.opencontainers.image.source = "https://github.com/International-Data-Spaces-Association/DataspaceConnectorUI"
 WORKDIR /usr/src/app
-
-# Copy package.json and package-lock.json for npm install
 COPY package*.json ./
-
-# Install dependencies
-RUN npm install
-
-# Copy the rest of the application code
 COPY . .
-
-# Build the application (replace with your actual build command)
-RUN npm run build
-
-# Change to a non-root user for running the application
+RUN npm install --no-audit --unsafe-perm
+RUN npm run-script build
+RUN npm prune --production
+RUN rm -r .git
+RUN sed -i "s@http://localhost:8083@@g" dist/js/*.js
 RUN groupadd -r nonroot && useradd -r -g nonroot nonroot
 USER nonroot
-
-# Start the application
 CMD ["npm", "run", "backend"]
