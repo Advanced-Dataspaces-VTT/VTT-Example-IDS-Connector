@@ -31,14 +31,12 @@ services:
       context: ./VTT_ui/.
     container_name: 'vtt-connector-ui'
     environment:
-      - CONNECTOR_URL=https://connector:8081
+      - CONNECTOR_URL=https://localhost:8081
       - CONNECTOR_USER=admin
       - CONNECTOR_PASSWORD=password
       - DEBUG=true
     ports:
       - 8083:8083
-    networks:
-      - connector
     depends_on:
       - connector
 
