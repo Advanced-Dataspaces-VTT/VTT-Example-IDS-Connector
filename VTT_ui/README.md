@@ -1,196 +1,67 @@
-## Dataspace Connector UI
+# Interacting With The Connector Through web user interface
 
-User interface for the [Dataspace Connector](https://github.com/International-Data-Spaces-Association/DataspaceConnector).
+# Overview
 
-The following illustration visualizes the interaction of the [Dataspace Connector](https://github.com/International-Data-Spaces-Association/DataspaceConnector), the [IDS Messaging Services](https://github.com/International-Data-Spaces-Association/IDS-Messaging-Services), the Configuration Manager, and it’s GUI. All components have a defined API that allows individual components to be removed or replaced. The Dataspace Connector can be deployed standalone and can be connected to existing backend systems. Configuration Manager and GUI facilitate the operation and configuration of the connector. If desired, the Dataspace Connector may be replaced by another connector implementation, either integrating the IDS Messaging Services or not.
+In your browser proceed to `http://localhost:8083/` and you will be reidrected to `http://localhost:8083/dashboard` and should see the following:
 
-![Overall architecture](https://github.com/International-Data-Spaces-Association/DataspaceConnector/blob/main/docs/assets/images/dsc_architecture.png)
+![dashboard](../assets/ui-dashboard.png)
 
-## Requirements
-* Install and start [Dataspace Connector](https://github.com/International-Data-Spaces-Association/DataspaceConnector)
-* Install [Node.js v.14](https://nodejs.org/en/download/)
+This provides an overview of your connector.
 
-## Installation
+## Creating a data offering
 
-Use the package manager [npm](https://nodejs.org/en/download/) in root directory to install DataspaceConnector UI:
+A data offering is an asset that you register with your connector and can provide to other connectors that agree to use the offering under the conditions you specifiy.
 
-```bash
-npm install --no-audit
-```
+![offering](../assets/data-offering-1.png)
 
-## Usage
+This view will show you current offering that are registered to the connector and will allow you to add new offerings by clicking "ADD OFFERING". 
 
-### Start Dataspace Connector UI
-Use the package manager [npm](https://nodejs.org/en/download/) in root directory to start Dataspace Connector UI:
-```bash
-npm start
-```
-Access: [localhost:8082](http://localhost:8082) 
+Clicking "ADD OFFERING" will take you to the following page:
 
-### Change UI port
+![offering](../assets/data-offering-2.png)
 
-Change `package.json` in root directory:
-```bash
-"serve": "vue-cli-service serve --open --port [PORT]"
-```
+![offering](../assets/data-offering-3.png)
 
-### Change Dataspace Connector host & port
+When all the fields are completed move on to the next tab. The Policy tab sets the criteria the consumer will have to agree to in order to use the offering.
 
-Change in `src/backend/index.js`:
-```bash
-let connectorUrl = "https://localhost:8080"
-```
+![offering](../assets/data-offering-4.png)
 
-### Change theme
+You can make a policy template or create a new one for each offtering.
 
-You can change the main colors of the user interface in `src/theme/default.js`
+Next we will proceed to the representations tab which allows you to upload a file (.json, .csv) or upload and external data source (REST API, database connection, remote document).
 
-### Protect backend with Basic Auth
-If you need to protect the website via Basic Auth, you can adjust the username and password via environment variables of the backend, simply by adjusting the `src/backend/.env` file or by setting the environment variables in your Docker environment.
-To activate the protection, you need to provide a username and a password, both with a length > 0. Otherwise (default behaviour), it is inactive.
-```
-BASIC_AUTH_USER=username
-BASIC_AUTH_PASSWORD=password
-```
+![offering](../assets/data-offering-5.png)
 
-### Test backend
+The catalogue tab allows you to create a catalogue (grouping) of similar offerings.
 
-The UI backend provides an endpoint (http://[localhost:8083]/testdata) that can be used as backend connection (type: REST) in the DSC for testing purposes.
-This can process POST and GET requests.
+![offering](../assets/data-offering-6.png)
 
-## Start with Docker
+Finally you can then register your offering, policy and catalog to a broker that has previously been configured to the connector.
 
-Build docker image:
-```bash
-sudo docker build -t dataspace-connector-ui .
-```
-Run docker image:
-```bash
-sudo docker-compose up
-```
-Access: [localhost:8083](http://localhost:8083) 
+![offering](../assets/data-offering-7.png)
 
-### Change host/port & authentification of Dataspace Connector on docker start
+By clicking save you are making the offering available.
 
-Change in `docker-compose.yml`:
-```bash
-environment:
-          - CONNECTOR_URL=https://localhost:8080
-          - CONNECTOR_USER=testuser
-          - CONNECTOR_PASSWORD=testpw
-```
+## Consuming a data offering
 
-## Add custom attributes to Resources
-The Dataspace Connector allows to define additional attributes for each of its entities (see [Dataspace Connector Documentation](https://international-data-spaces-association.github.io/DataspaceConnector/Documentation/v6/DataModel). If the additional fields are set for a `Resource` entity, this information can be used to provider further metadata, e.g. for registering these data at an IDS Metadata Broker (which must support these Metadata-fields too). The Dataspace Connector UI provides the functionality to define custom fields, which are shown in the frontend to define such additional information on a Resource level (see Screenshot below). By default the functionality is disabled and thus not shown in the UI.
+To consume a data offering you will need to have the connector URL `http://localhost:8081/api/ids/data`. Once you have the connector URL proceed to the Data consumption tab Requests and from here you can see all offering which you have already agreeded to consume
 
-![Screenshot of additional meta information for a Resource offering](images/feature-additional-parameters.png)
+![offering](../assets/data-consumption-1.png)
 
-You can define additional elements via three input options: 
-- text fields
-- select boxes (e.g., a category)
-- select boxes with according sub-select boxes (e.g., category with sub-categories) 
+Start by clicking on Request resource and in the new tab provide the connector URL that you want to consume data from 
 
-### Enable and adjust the configuration
-To enable the feature, go to the backend folder `src/backend/` and adjust `.env` file: `USE_ONTOLOGY = true`. In case you are deploying the frontend via Docker set environment variables accordingly. The processing of the feature takes place in `ontologyLoader.js`. A demo configuration is already given by the files `src/backend/ontology.ttl` and `src/backend/ontology.config.json`.
+![offering](../assets/data-consumption-2.png)
 
-#### Adjust the ontology
-You need to adjust the content of the file `src/backend/ontology.ttl`, which already provides some examples.
+Show available resources will then fetch all resources from the connector where you can then view them in more detail by selecting the show representations or show meta data icons at the end of each row.
 
-##### Select boxes
-For select boxes, you have to define an `owl:class` element:
-```
-dsc:DataCategory 
-    a owl:Class ;
-    rdfs:label "Data category"@en ;
-    rdfs:comment "Class of all data categories."@en .
-                 
-dsc:dataCategory 
-    a owl:ObjectProperty ;
-    rdfs:domain ids:Resource ;
-    rdfs:range dsc:DataCategory ;
-    rdfs:label "Data category"@en .
-```
+Selecting show representations will provide a URL which when clicked will show an artifact and at the end of the artifact row will allow you to agree or disagree with the contract (policy) for the offering. After agreeing you will be provided with a download URL which can be used to download the offering. 
 
-If you want to define a select box with a sub-select box, in addition you need to add (do not forget to link the elements of the class to this sub-category (see below)):
-```
-dsc:DataSubcategory 
-    a owl:Class ;
-    rdfs:label "Data subcategory"@en ;
-    rdfs:comment "Class of all data subcategories."@en .
-                    
-dsc:dataSubcategory 
-    a owl:ObjectProperty ;
-    rdfs:domain ids:Resource ;
-    rdfs:range dsc:DataSubcategory ;
-    rdfs:label "Data subcategory"@en .
-```
+It is also possible to add this offering to a previously configured route.
 
-To add categories to the root select box, simply add elements referring to the class:
-```
-cat:Infrastructure 
-    a dsc:DataCategory ;
-    rdfs:label "Infrastructure"@en .
-```
+## Adding a broker to the connector
 
-To add elements for sub-select boxes, add them accordingly: 
-```
-sub:RoadNetwork 
-    a cat:Infrastructure ;
-    rdf:type   dsc:DataSubcategory ;
-    rdfs:label "Road Network"@en .
-```
+To add a broker to the connector select IDS eco system and select broker
 
-##### Text fields
-For text fields, you have to define an `owl:DatatypeProperty` element:
-```
-dsc:dataModel 
-    a owl:DatatypeProperty ;
-    rdfs:domain ids:Resource ;
-    rdfs:range rdfs:Literal ;
-    rdfs:label "Data model"@en .
-```
+![broker](../assets/adding-broker-1.png)
 
-#### Customizing
-In case you cannot stick to the given ontology, you may change the static variables for predicates and objects to identify the structure of the given ontology in `ontologyLoader.js`. 
-
-#### Adjust the configuration `ontology.config.json`
-In order to map and display the additional fields, you need to adjust the configuration file. Each select box needs to be defined as object in `select` array, and text fields need to be defined as objects in `text` array.
-```
-{
-  "select":[
-    {...}, ..., {...}
-  ],
-  "text":[
-    {...}, ..., {...}
-  ]
-}
-```
-
-#### Select box configuration
-You need to define four properties on each object:
-- `"identifier": string`: The identifier of the ontology class for a select box, e.g. `http://w3id.org/dsc#DataCategory`. This identifier is used to analyze the structure of your ttl file. Be aware that this identifier is overwritten within the process of parsing, as the expected key needs to be a parameter instead of a class. Thus, in this example `http://w3id.org/dsc#dataCategory` would be the key (notice the lower case `d`)
-- `"required": boolean`: If it is required to select an option from the select box.
-- `"identifier_children": string`: The identifier of the ontology class for a sub-select box, e.g. `http://w3id.org/dsc#DataSubcategory`. This field is not used for parsing. It is just used for the front-end to determine the correct key for the selected value.
-- `"required_children": boolean`: If it is required to select an option from the sub-select box.
-
-#### Text field configuration
-You need to define two properties on each object:
-- `"identifier": string`: The identifier of the ontology class for a text field, e.g. `http://w3id.org/dsc#dataModel`.
-- `"required": boolean`: If it is required to enter text in the text field.
-
-
-## Development
-Please read the [development guide](https://github.com/International-Data-Spaces-Association/DataspaceConnectorUI/blob/develop/DEVELOPMENT_GUIDE.md).
-
-
-## Contributing
-Please read through our [contributing guidelines](https://github.com/International-Data-Spaces-Association/DataspaceConnectorUI/blob/develop/CONTRIBUTING.md).
-
-### Main Contact
-[Sebastian Opriel](https://github.com/SebastianOpriel), [sovity GmbH](https://sovity.de)
-
-### Contributors
-* [Bastian Wetljen](https://github.com/BastianWel), [Fraunhofer FKIE](https://www.fkie.fraunhofer.de)
-* [Sebastian Opriel](https://github.com/SebastianOpriel), [sovity GmbH](https://sovity.de)
-* [Melissa Das](https://github.com/melissadas), [sovity GmbH](https://sovity.de)
-* [Philipp Reusch](https://github.com/pdrd), [sovity GmbH](https://sovity.de)# DSILC-UI
+From this page you can see all configured brokers and add new ones by clicking add broker, to do this you will need a broker URL `http:/localhost:8080/infrastructure` once you have provided the broker URL and a title you can then save and register the broker with your connector
