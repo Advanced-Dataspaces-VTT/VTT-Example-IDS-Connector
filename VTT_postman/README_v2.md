@@ -5,21 +5,22 @@ This section offers guidance for advanced users on effectively managing and conf
 In the provided example, the user initiates the process by querying the IDS metadata broker to obtain information regarding available connectors. Leveraging this information, the user then proceeds to request more in-depth descriptions of the available data resources. 
 Finally, the user creates a contract agreement and gains access to the chosen dataset.
 
-<h2> 2. Receive data from VTT's Data Space Innovation Lab connector</h2>
+<h2> 1. Receive data from VTT's Data Space Innovation Lab connector</h2>
 
 VTT Data Space Innovation Lab provides an experimental data space that can be used for e.g., performing combatibility tests with different IDS modules. Next, we will test our connector instance using the innovation lab. The data flows between modules are shown in the picture below. 
 
-![Testbed workflow](https://github.com/IlkkaNis/VTT-OSME-tutorial/blob/main/Images/testbedworkflow.png?raw=true)
+![Testbed workflow](https://github.com/Advanced-Dataspaces-VTT/VTT-Example-IDS-Connector/blob/development/assets/testbedworkflow.png?raw=true)
+
 
 The configuration interface provided by the connector can be accessed with different methods. One example is the Swagger GUI that can be found at https://your_connector_URL/api/docs. 
 
 However, in the following, the Postman tool is utilized for managing the connector.
 
-<b>2.1 Import the Postman collections</b>
+<b>1.1 Import the Postman collections</b>
 - Navigate to the folder "Postman_collections" and import the json files into to your Postman application ("Import" button  + select file)
 - From the shown collections, select the "Consume data resource"
 
-<b>2.2 Test data retrieval from Data Space Innovation Lab's connector </b> <br> <br>
+<b>1.2 Test data retrieval from Data Space Innovation Lab's connector </b> <br> <br>
 In Postman most of the needed configuration tasks can be done by editing the collection variables (click the name of the collection and examine the "Variables" tab)
 
 - Change the "connectorURL" variable to correspond the URL where your connector instance is deployed on. 
@@ -40,7 +41,7 @@ In Postman most of the needed configuration tasks can be done by editing the col
 - Do the same for the value of the key "resourceCatalogURL" ("catalogURL" in the collection variable table). On the data provider side, the data catalogs contain the different data resources the provider offer See [here](https://international-data-spaces-association.github.io/DataspaceConnector/Documentation/v6/DataModel) for more information about the connector's data model.
 - Save the collection variables
 
-![Postman variables](https://github.com/IlkkaNis/VTT-OSME-tutorial/blob/main/Images/postman_variables.png?raw=true)
+![Postman variables](https://github.com/Advanced-Dataspaces-VTT/VTT-Example-IDS-Connector/blob/development/assets/postman_variables.png?raw=true)
 
 - Next, open the "Description request with catalogue" and press the "Send" button. Again, you should see a json description in the response's "Body" section located in the lower part of the view. Examine the json and try to find the part where different data artifacts are described, for example:
 
