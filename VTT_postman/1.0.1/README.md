@@ -14,11 +14,11 @@ VTT Data Space Innovation Lab provides an experimental data space that can be us
 
 The configuration interface provided by the connector can be accessed with different methods. One example is the Swagger GUI that can be found at https://your_connector_URL/api/docs. 
 
-However, in the following, the Postman tool is utilized for managing the connector.
+However, in the following, the Postman tool (https://www.postman.com/) is utilized for managing the connector.
 
 <b>1.1 Import the Postman collections</b>
-- Navigate to the folder "Postman_collections" and import the json files into to your Postman application ("Import" button  + select file)
-- From the shown collections, select the "Consume data resource"
+- Navigate to the folder "VTT-Example-IDS-Connector/VTT_postman/1.0.1" and import the json file "Consume data using broker.postman_collection.json" into to your Postman application ("Import" button  + select file)
+- You should now see the collection with name "Consume data using broker" in you Postman
 
 <b>1.2 Test data retrieval from Data Space Innovation Lab's connector </b> <br> <br>
 In Postman most of the needed configuration tasks can be done by editing the collection variables (click the name of the collection and examine the "Variables" tab)
