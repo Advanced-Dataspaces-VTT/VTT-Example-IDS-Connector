@@ -19,8 +19,6 @@ services:
       - 8081:8081
     env_file:
       - ./VTT_connector/connector.env
-    volumes:
-      - ./config.json:/app/src/main/resources/conf/config.json
     networks:
       - local
     depends_on:
@@ -32,7 +30,7 @@ services:
       context: ./VTT_ui/.
     container_name: 'vtt-connector-ui'
     environment:
-      - CONNECTOR_URL=http://connector:8081
+      - CONNECTOR_URL=https://connector:8081
       - CONNECTOR_USER=admin
       - CONNECTOR_PASSWORD=password
     ports:
