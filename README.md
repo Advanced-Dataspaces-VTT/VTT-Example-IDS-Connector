@@ -45,11 +45,13 @@ To set up and run the VTT Example IDS Connector, follow these steps:
 
 2. Update the `ids:accessURL:@id` replacing the host with the servers IP address of the server
 
-3. Update the `CONNECTOR_URL` ensuring the host is set to the servers IP address of the server
+3. Then navigate to the [docker-compose.yml](docker-compose.yml)
 
-4. From the root directory run `docker compose up --build -d` this will start the `VTT_connector` and `VTT_UI`
+4. Locate the `ui` service and ensure that `CONNECTOR_URL` is set to the connector this should match what was done in the [config.json](./VTT_connector/src/main/resources/conf/config.json) for `ids:accessURL:@id`
 
-5. Once the services have started you can navigate to `http://server-ip:8083`
+5. From the root directory run `docker compose up --build -d` this will start the `VTT_connector` and `VTT_UI`
+
+5. Once the services have started you can navigate to `http://server-ip:8083` where you will find the connectors user interface
 
 ## Further information
 * [User interface](./VTT_ui/README.md)

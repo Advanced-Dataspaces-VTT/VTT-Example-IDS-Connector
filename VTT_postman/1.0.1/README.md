@@ -9,10 +9,10 @@ Finally, the user creates a contract agreement and gains access to the chosen da
 
 VTT Data Space Innovation Lab provides an experimental data space that can be used for e.g., performing combatibility tests with different IDS modules. Next, we will test our connector instance using the innovation lab. The data flows between modules are shown in the picture below. 
 
-![Testbed workflow](https://github.com/Advanced-Dataspaces-VTT/VTT-Example-IDS-Connector/blob/development/assets/testbedworkflow.png?raw=true)
+![Testbed workflow](../../assets/testbedworkflow.png)
 
 
-The configuration interface provided by the connector can be accessed with different methods. One example is the Swagger GUI that can be found at https://your_connector_URL/api/docs. 
+The configuration interface provided by the connector can be accessed with different methods. One example is the Swagger GUI that can be found at https://<connector-url:connector-port>/api/docs, when this page is requested you need to authenticate with username and password (admin:password).
 
 However, in the following, the Postman tool (https://www.postman.com/) is utilized for managing the connector.
 
@@ -41,7 +41,7 @@ In Postman most of the needed configuration tasks can be done by editing the col
 - Do the same for the value of the key "resourceCatalogURL" ("catalogURL" in the collection variable table). On the data provider side, the data catalogs contain the different data resources the provider offer See [here](https://international-data-spaces-association.github.io/DataspaceConnector/Documentation/v6/DataModel) for more information about the connector's data model.
 - Save the collection variables
 
-![Postman variables](https://github.com/Advanced-Dataspaces-VTT/VTT-Example-IDS-Connector/blob/development/assets/postman_variables.png?raw=true)
+![Postman variables](../../assets/postman_variables.png)
 
 - Next, open the "Description request with catalogue" and press the "Send" button. Again, you should see a json description in the response's "Body" section located in the lower part of the view. Examine the json and try to find the part where different data artifacts are described, for example:
 
