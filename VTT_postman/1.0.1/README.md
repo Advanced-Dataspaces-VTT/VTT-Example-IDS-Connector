@@ -26,14 +26,15 @@ In Postman most of the needed configuration tasks can be done by editing the col
 - Change the "connectorURL" variable to correspond the URL where your connector instance is deployed on. 
 
 (NOTE: Remember to press "Save" button every time you edit the collection variables)
+(NOTE: If you get the "401 Unauthorized" error response from some of the requests, please check that you have selected in the Authorization tab "Basic Auth" and defined Username: "admin", Password: "password")
 
 - The "Broker query" request enables searching available connectors from the IDS Broker. By opening the "Body" tab of the request you can examine the pre-defined SPARQL query that retrieves necessary data from the broker. Press the "Send" button to execute the query.
 - You should now see results in the response's body section, for example:
 
 ```yaml
     "@id": "https://localhost/connectors/-1475001399",
-    "resourceCatalogURL": "https://130.188.160.90:8081/api/catalogs/dac9f6f6-67dd-4594-aa5f-2f9937aaa57f",
-    "dataProviderAccessURL": "https://130.188.160.90:8081/api/ids/data",
+    "resourceCatalogURL": "https://130.188.160.22:8081/api/catalogs/dac9f6f6-67dd-4594-aa5f-2f9937aaa57f",
+    "dataProviderAccessURL": "https://130.188.160.22:8081/api/ids/data",
     "description": "An example connector deployed as a part of VTT's IDS testbed",
     "title": "VTT IDS testbed example connector",
 ```
@@ -47,7 +48,7 @@ In Postman most of the needed configuration tasks can be done by editing the col
 
 ```yaml
   "@type": "ids:Artifact",
-  "@id": "https://130.188.160.90:8081/api/artifacts/81cde26e-2290-479c-aba1-f002d1e3d84a",
+  "@id": "https://130.188.160.22:8081/api/artifacts/81cde26e-2290-479c-aba1-f002d1e3d84a",
   "ids:fileName": "MyTestArtifact",
   "ids:creationDate": {
     "@value": "2023-04-06T07:48:23.556Z",
