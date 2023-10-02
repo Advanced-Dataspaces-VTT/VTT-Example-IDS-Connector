@@ -44,7 +44,7 @@ By clicking save you are making the offering available.
 
 ## Consuming a data offering
 
-To consume a data offering you will need to have the connector URL `http://localhost:8081/api/ids/data`. Once you have the connector URL proceed to the Data consumption tab Requests and from here you can see all offering which you have already agreeded to consume
+To consume a data offering you will need to have the connector URL `https://localhost:8081/api/ids/data`. Once you have the connector URL proceed to the Data consumption tab Requests and from here you can see all offering which you have already agreeded to consume
 
 ![offering](../assets/data-consumption-1.png)
 
