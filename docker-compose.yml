@@ -23,7 +23,6 @@ services:
       - local
     depends_on:
       - postgres
-    platform: linux/amd64
 
   ui:
     build:
