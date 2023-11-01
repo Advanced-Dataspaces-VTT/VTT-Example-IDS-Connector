@@ -1,4 +1,4 @@
-services:      
+services:
   postgresb:
     image: postgres:13
     container_name: 'postgresb-container'
@@ -26,8 +26,8 @@ services:
       - DAPS_KEY_URL=https://omejdn/auth/jwks.json
       - DAPS_INCOMING_DAT_DEFAULT_WELLKNOWN=/jwks.json
       - SERVER_SSL_KEY-STORE=file:///conf/testbed2.p12
-      # Define the PostgreSQL setup     
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresb:5432/connectorbdb 
+      # Define the PostgreSQL setup
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresb:5432/connectorbdb
       - SPRING_DATASOURCE_USERNAME=postgresuserb
       - SPRING_DATASOURCE_PASSWORD=password
       - SPRING_DATASOURCE_PLATFORM=postgres
@@ -43,7 +43,7 @@ services:
       - postgresb
 
   ui:
-    image: ghcr.io/advanced-dataspaces-vtt/vtt-example-connector-ui:1.0.0
+    image: ryankford/vtt-example-connector-ui:latest-amd64
     container_name: 'vtt-connector-ui'
     environment:
       - CONNECTOR_URL=https://connectorb:8081
