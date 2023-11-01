@@ -35,7 +35,7 @@ services:
       - SPRING_JPA_DATABASE_PLATFORM=org.hibernate.dialect.PostgreSQLDialect
     volumes:
       - ./conf/config.json:/config/config.json
-      - ./conf/testbed2.p12:/conf/testbed2.p12
+      - ./conf/vtt_test_certificate.p12:/conf/vtt_test_certificate.p12
       - ./conf/truststore.p12:/config/truststore.p12
     networks:
       - local
