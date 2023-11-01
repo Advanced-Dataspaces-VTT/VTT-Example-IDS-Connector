@@ -42,6 +42,20 @@ services:
     depends_on:
       - postgresb
 
+  ui:
+    image: ghcr.io/advanced-dataspaces-vtt/vtt-example-connector-ui:1.0.0
+    container_name: 'vtt-connector-ui'
+    environment:
+      - CONNECTOR_URL=https://connectorb:8081
+      - CONNECTOR_USER=admin
+      - CONNECTOR_PASSWORD=password
+    ports:
+      - 8083:8083
+    networks:
+      - local
+    depends_on:
+      - connectorb
+
 volumes:
   connector-datab: {}
 
