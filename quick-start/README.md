@@ -1,6 +1,6 @@
 # Quick start
 
-Note: root directory `hack/`
+Note: root directory [quick-start/](../quick-start/)
 
 Start the application: `docker compose up --build` alternatively running it in the background `docker compose up --build -d` you can then ensure the correct containers are running and on which ports with `docker ps`
 
