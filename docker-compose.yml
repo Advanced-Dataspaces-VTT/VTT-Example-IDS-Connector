@@ -1,0 +1,43 @@
+version: '3.5'
+
+services:
+  postgres:
+    image: postgres:13
+    container_name: 'vtt-connector-postgres'
+    ports:
+      - "5439:5432"
+    env_file:
+      - ./VTT_connector/postgres.env
+    networks:
+      - local
+
+  connector:
+    build:
+      context: ./VTT_connector/.
+    container_name: 'vtt-connector'
+    ports:
+      - 8081:8081
+    env_file:
+      - ./VTT_connector/connector.env
+    networks:
+      - local
+    depends_on:
+      - postgres
+
+  ui:
+    build:
+      context: ./VTT_ui/.
+    container_name: 'vtt-connector-ui'
+    environment:
+      - CONNECTOR_URL=https://connector:8081
+      - CONNECTOR_USER=admin
+      - CONNECTOR_PASSWORD=password
+    ports:
+      - 8083:8083
+    networks:
+      - local
+    depends_on:
+      - connector
+
+networks:
+  local:

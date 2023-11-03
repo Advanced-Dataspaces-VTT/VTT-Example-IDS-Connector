@@ -1,0 +1,28 @@
+version: '3.5'
+services:
+  postgres:
+    image: postgres:13
+    container_name: 'postgres-container-connectorc'
+    ports:
+      - "5439:5432"
+    env_file:
+      - ./postgres.env
+    networks:
+      - connector
+  connector:
+    build:
+      context: .
+    container_name: 'connectorc'
+    ports:
+      - 8081:8081
+    env_file:
+      - ./connector.env
+    networks:
+      - connector
+    depends_on:
+      - postgres
+    platform: linux/amd64
+
+
+networks:
+  connector:
