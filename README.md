@@ -1,27 +1,61 @@
-# Quick start
+# VTT-Example-IDS-Connector
 
-Note: root directory [quick-start/](../quick-start/)
+This project contains components for the VTT Example IDS Connector, which includes a User Interface (UI) and a Connector component.
 
-Start the application: `docker compose up --build` alternatively running it in the background `docker compose up --build -d` you can then ensure the correct containers are running and on which ports with `docker ps`
+## Directory Structure
 
-Successfully running the [docker-compose.yml](./docker-compose.yml) file will result in the following containers running:
+The project directory is structured as follows:
 
-| CONTAINER ID   | IMAGE                                                                     | COMMAND                  | CREATED         | STATUS         | PORTS                                                            | NAMES                |
-|-----------------|---------------------------------------------------------------------------|--------------------------|-----------------|-----------------|------------------------------------------------------------------|----------------------|
-| 94ca65d41d28   | ryankford/vtt-example-connector-ui:latest-amd64                           | "docker-entrypoint.s…"   | 5 minutes ago   | Up 5 minutes   | 0.0.0.0:8083->8083/tcp, :::8083->8083/tcp                        | vtt-connector-ui    |
-| a271a6f58904   | ghcr.io/international-data-spaces-association/dataspace-connector:8.0.2   | "java org.springfram…"   | 5 minutes ago   | Up 5 minutes   | 8080/tcp, 29292/tcp, 0.0.0.0:8081->8081/tcp, :::8081->8081/tcp   | connectorb          |
-| 39125654d4f4   | postgres:13                                                               | "docker-entrypoint.s…"   | 5 minutes ago   | Up 5 minutes   | 0.0.0.0:5433->5432/tcp, :::5433->5432/tcp                        | postgresb-container |
+```
+.
+├── README.md
+├── VTT_connector
+├── VTT_postman
+├── VTT_ui
+├── assets
+├── config.json
+└── docker-compose.yml
+```
 
+- `VTT_connector`: This directory contains the Connector component files.
+- `VTT_ui`: This directory contains the User Interface (UI) files.
+- `VTT_postman`: Contains a Postman collection for data consumer and provider.
+- `assets`: Contains various assets used in the project.
+- `docker-compose.yml`: Docker Compose configuration for orchestrating the services.
 
-After 10 minutes you can then navigate to the following URLs:
-* User interface: http://localhost:8083/
-* Connector endpoints: https://localhost:8081/
-* Connector swagger endpoint: https://localhost:8081/api/docs
-    * Username: admin
-    * Password: password
+## Project Components
 
-Suggested browser: `Chrome`
+- **User Interface (UI)**: The UI component can be found in the `VTT_ui` directory. It is developed based on the [DataspaceConnectorUI](https://github.com/International-Data-Spaces-Association/DataspaceConnectorUI) project.
 
-Troubleshooting:
-* First run: `docker compose down -v`
-* Then run: `docker compose up --build`
+- **Connector**: The Connector component can be found in the `VTT_connector` directory. It is based on the [DataspaceConnector](https://github.com/International-Data-Spaces-Association/DataspaceConnector) project.
+
+## Usage
+
+To set up and run the VTT Example IDS Connector, follow these steps:
+
+### Running locally 
+
+1. From the root directory run `docker compose up --build -d` this will start the `VTT_connector` and `VTT_UI`
+
+2. Once the services have started you can navigate to `http://localhost:8083`
+
+### Deploying to a server
+
+1. Navigate to the [docker-compose.yml](docker-compose.yml)
+
+2. Locate the `ui` service and ensure that `CONNECTOR_URL` is set to the URL / IP of the server where the connector is deployed on.
+
+3. From the root directory run `docker compose up --build -d` this will start the `VTT_connector` and `VTT_UI`
+
+4. Once the services have started you can navigate to `http://server-ip:8083` where you will find the connectors user interface
+
+## Further information
+* [User interface](./VTT_ui/README.md)
+* [Postman collections](./VTT_postman/README.md)
+
+## License
+
+This project is licensed under the terms of the [LICENSE](LICENSE) file included in the respective component directories.
+
+For detailed information about the licenses of individual components, refer to the specific component's repository.
+
