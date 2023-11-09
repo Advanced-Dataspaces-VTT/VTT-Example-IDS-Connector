@@ -8,6 +8,12 @@ In your browser proceed to `http://localhost:8083/` and you will be reidrected t
 
 This provides an overview of your connector.
 
+NOTE: In educational usage, the connector should be deployed in the "Test mode". To change your connector into Test mode:
+1. Press the "Advanced View" switch located on the bottom left part of the view
+2. Open the "Settings" drop-down menu and select the "General" tab
+3. From the General view, find the "Connector Deploy Mode" section and change it to "Test"
+
+
 ## Creating a data offering
 
 A data offering is an asset that you register with your connector and can provide to other connectors that agree to use the offering under the conditions you specifiy.
