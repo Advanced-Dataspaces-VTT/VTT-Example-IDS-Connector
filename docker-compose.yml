@@ -21,11 +21,11 @@ services:
     environment:
       - CONFIGURATION_PATH=/config/config.json
       - SERVER_PORT=8081
-      - DAPS_URL=https://omejdn
-      - DAPS_TOKEN_URL=https://omejdn/auth/token
-      - DAPS_KEY_URL=https://omejdn/auth/jwks.json
+      - DAPS_URL=https://daps.collab-cloud.eu/auth
+      - DAPS_TOKEN_URL=https://daps.collab-cloud.eu/auth/token
+      - DAPS_KEY_URL=https://daps.collab-cloud.eu/auth/jwks.json
       - DAPS_INCOMING_DAT_DEFAULT_WELLKNOWN=/jwks.json
-      - SERVER_SSL_KEY-STORE=file:///conf/testbed2.p12
+      - SERVER_SSL_KEY-STORE=file:///conf/collab-cloud.p12
       # Define the PostgreSQL setup
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresb:5432/connectorbdb
       - SPRING_DATASOURCE_USERNAME=postgresuserb
@@ -35,7 +35,7 @@ services:
       - SPRING_JPA_DATABASE_PLATFORM=org.hibernate.dialect.PostgreSQLDialect
     volumes:
       - ./conf/config.json:/config/config.json
-      - ./conf/testbed2.p12:/conf/testbed2.p12
+      - ./conf/collab-cloud.p12:/conf/collab-cloud.p12
       - ./conf/truststore.p12:/config/truststore.p12
     networks:
       - local
@@ -46,11 +46,12 @@ services:
     image: ryankford/vtt-example-connector-ui:latest-amd64
     container_name: 'vtt-connector-ui'
     environment:
+#      - CONNECTOR_URL=https://decode.collab-cloud.eu:8081
       - CONNECTOR_URL=https://connectorb:8081
       - CONNECTOR_USER=admin
       - CONNECTOR_PASSWORD=password
     ports:
-      - 8083:8083
+      - 8080:8083
     networks:
       - local
     depends_on:
@@ -62,3 +63,4 @@ volumes:
 networks:
   local:
     driver: bridge
+
