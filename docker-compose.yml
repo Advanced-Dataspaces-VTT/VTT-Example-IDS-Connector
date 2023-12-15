@@ -37,7 +37,6 @@ services:
       - SPRING_DATASOURCE_DRIVERCLASSNAME=org.postgresql.Driver
       - SPRING_JPA_DATABASE_PLATFORM=org.hibernate.dialect.PostgreSQLDialect
     volumes:
-      - ./conf/config.json:/config/config.json
       - ./conf/collab-cloud.p12:/conf/collab-cloud.p12
       - ./conf/truststore.p12:/config/truststore.p12
     networks:
