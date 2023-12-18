@@ -14,7 +14,7 @@ services:
       - local
 
   connectorb:
-    image: ghcr.io/international-data-spaces-association/dataspace-connector:8.0.2
+    image: ghcr.io/international-data-spaces-association/dataspace-connector:latest
     container_name: connectorb
     ports:
       - 8081:8081
@@ -37,6 +37,7 @@ services:
       - SPRING_DATASOURCE_DRIVERCLASSNAME=org.postgresql.Driver
       - SPRING_JPA_DATABASE_PLATFORM=org.hibernate.dialect.PostgreSQLDialect
     volumes:
+      - ./conf/config.json:/config/config.json
       - ./conf/collab-cloud.p12:/conf/collab-cloud.p12
       - ./conf/truststore.p12:/config/truststore.p12
     networks:
