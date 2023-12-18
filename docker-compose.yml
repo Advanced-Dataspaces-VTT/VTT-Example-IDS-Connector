@@ -1,4 +1,5 @@
 services:
+      
   postgresb:
     image: postgres:13
     container_name: 'postgresb-container'
@@ -12,9 +13,11 @@ services:
       - connector-datab:/var/lib/postgresql/data
     networks:
       - local
+      
 
+      
   connectorb:
-    image: ghcr.io/international-data-spaces-association/dataspace-connector:latest
+    image: ghcr.io/international-data-spaces-association/dataspace-connector:8.0.2
     container_name: connectorb
     ports:
       - 8081:8081
@@ -29,8 +32,8 @@ services:
       - SPRING_SECURITY_USER_NAME=admin
       - SPRING_SECURITY_USER_PASSWORD=password
 
-      # Define the PostgreSQL setup
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresb:5432/connectorbdb
+      # Define the PostgreSQL setup     
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresb:5432/connectorbdb 
       - SPRING_DATASOURCE_USERNAME=postgresuserb
       - SPRING_DATASOURCE_PASSWORD=password
       - SPRING_DATASOURCE_PLATFORM=postgres
@@ -60,6 +63,7 @@ services:
       - connectorb
 
 volumes:
+
   connector-datab: {}
 
 networks:
