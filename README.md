@@ -114,7 +114,5 @@ Show available resources will then fetch all resources from the connector where 
 
 Selecting show representations will provide a URL which when clicked will show an artifact and at the end of the artifact row will allow you to agree or disagree with the contract (policy) for the offering. After agreeing you will be provided with a download URL which can be used to download the offering. 
 
-It is also possible to add this offering to a previously configured route.
-
 
 
