@@ -61,7 +61,7 @@ For detailed information about the licenses of individual components, refer to t
 
 In your browser proceed to `http://server-ip:8080/` and you will be reidrected to `http://server-ip:8080/dashboard` and should see the following:
 
-![dashboard](../assets/ui-dashboard.png)
+![dashboard](/assets/ui-dashboard.png)
 
 This provides an overview of your connector.
 
@@ -70,15 +70,15 @@ This provides an overview of your connector.
 
 A data offering is an asset that you register with your connector and can provide to other connectors that agree to use the offering under the conditions you specifiy.
 
-![offering](../assets/data-offering-1.png)
+![offering](/assets/data-offering-1.png)
 
 This view will show you current offering that are registered to the connector and will allow you to add new offerings by clicking "ADD OFFERING". 
 
 Clicking "ADD OFFERING" will take you to the following page:
 
-![offering](../assets/data-offering-2.png)
+![offering](/assets/data-offering-2.png)
 
-![offering](../assets/data-offering-3.png)
+![offering](/assets/data-offering-3.png)
 
 When all the fields are completed move on to the next tab. The Policy tab sets the criteria the consumer will have to agree to in order to use the offering.
 
@@ -88,15 +88,15 @@ You can make a policy template or create a new one for each offtering.
 
 Next we will proceed to the representations tab which allows you to upload a file (.json, .csv) or upload and external data source (REST API, database connection, remote document).
 
-![offering](../assets/data-offering-5.png)
+![offering](/assets/data-offering-5.png)
 
 The catalogue tab allows you to create a catalogue (grouping) of similar offerings.
 
-![offering](../assets/data-offering-6.png)
+![offering](/assets/data-offering-6.png)
 
 Finally you can then register your offering, policy and catalog to a broker that has previously been configured to the connector.
 
-![offering](../assets/data-offering-7.png)
+![offering](/assets/data-offering-7.png)
 
 By clicking save you are making the offering available.
 
@@ -104,11 +104,11 @@ By clicking save you are making the offering available.
 
 To consume a data offering you will need to have the connector URL `https://server-ip:8081/api/ids/data`. Once you have the connector URL proceed to the Data consumption tab Requests and from here you can see all offering which you have already agreeded to consume
 
-![offering](../assets/data-consumption-1.png)
+![offering](/assets/data-consumption-1.png)
 
 Start by clicking on Request resource and in the new tab provide the connector URL that you want to consume data from 
 
-![offering](../assets/data-consumption-2.png)
+![offering](/assets/data-consumption-2.png)
 
 Show available resources will then fetch all resources from the connector where you can then view them in more detail by selecting the show representations or show meta data icons at the end of each row.
 
