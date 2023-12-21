@@ -46,7 +46,7 @@ To set up and run the VTT Example IDS Connector, follow these steps:
 
 2. Once the services have started you can navigate to `http://localhost:8080` to access the user interface
 
-   Please note that when deploying to a server, `http://localhost:8080' should be replaced with `http://server-ip:8080` to access the user interface
+   Please note that when deploying to a server, `http://localhost:8080` should be replaced with `http://server-ip:8080` to access the user interface
 
 
 ## License
