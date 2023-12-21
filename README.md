@@ -116,12 +116,5 @@ Selecting show representations will provide a URL which when clicked will show a
 
 It is also possible to add this offering to a previously configured route.
 
-## Adding a broker to the connector
-
-To add a broker to the connector select IDS eco system and select broker
-
-![broker](../assets/adding-broker-1.png)
-
-From this page you can see all configured brokers and add new ones by clicking add broker, to do this you will need a broker URL `http:/localhost:8080/infrastructure` once you have provided the broker URL and a title you can then save and register the broker with your connector
 
 
