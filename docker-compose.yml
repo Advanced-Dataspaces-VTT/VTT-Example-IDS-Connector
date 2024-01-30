@@ -1,21 +1,5 @@
 services:
-      
-  postgresb:
-    image: postgres:13
-    container_name: 'postgresb-container'
-    ports:
-      - "5433:5432"
-    environment:
-      - POSTGRES_USER=postgresuserb
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_DB=connectorbdb
-    volumes:
-      - connector-datab:/var/lib/postgresql/data
-    networks:
-      - local
-      
 
-      
   connectorb:
     image: ghcr.io/international-data-spaces-association/dataspace-connector:8.0.2
     container_name: connectorb
@@ -32,27 +16,24 @@ services:
       - SPRING_SECURITY_USER_NAME=admin
       - SPRING_SECURITY_USER_PASSWORD=password
 
-      # Define the PostgreSQL setup     
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresb:5432/connectorbdb 
-      - SPRING_DATASOURCE_USERNAME=postgresuserb
-      - SPRING_DATASOURCE_PASSWORD=password
-      - SPRING_DATASOURCE_PLATFORM=postgres
-      - SPRING_DATASOURCE_DRIVERCLASSNAME=org.postgresql.Driver
-      - SPRING_JPA_DATABASE_PLATFORM=org.hibernate.dialect.PostgreSQLDialect
+      # Define the PostgreSQL setup
+      - SPRING.DATASOURCE.URL=jdbc:h2:mem:connectordb;MODE=PostgreSQL
+      - SPRING.DATASOURCE.DRIVERCLASSNAME=org.h2.Driver
+      - SPRING.DATASOURCE.USERNAME=sa
+      - SPRING.DATASOURCE.PASSWORD=password
+      - SPRING.DATASOURCE.HIKARI.AUTO-COMMIT=false
     volumes:
       - ./conf/config.json:/config/config.json
       - ./conf/collab-cloud.p12:/conf/collab-cloud.p12
       - ./conf/truststore.p12:/config/truststore.p12
     networks:
       - local
-    depends_on:
-      - postgresb
 
   ui:
     image: ryankford/vtt-example-connector-ui:latest-amd64
     container_name: 'vtt-connector-ui'
     environment:
-      - CONNECTOR_URL=https://connectorb:8081
+      - CONNECTOR_URL=https://*server_ip / localhost*:8081
       - CONNECTOR_USER=admin
       - CONNECTOR_PASSWORD=password
     ports:
@@ -62,10 +43,8 @@ services:
     depends_on:
       - connectorb
 
-volumes:
-
-  connector-datab: {}
 
 networks:
   local:
     driver: bridge
+
