@@ -33,8 +33,6 @@ The imported components are:
 
 - **Connector**: The Connector component is based on the [DataspaceConnector](https://github.com/International-Data-Spaces-Association/DataspaceConnector) project.
   
-- **Postgres**: The Postgres database component is based on the [Postgres](https://github.com/postgres/postgres) project.
-
 
 ## Usage
 
@@ -42,9 +40,11 @@ To set up and run the VTT Example IDS Connector, follow these steps:
 
 ### Running the connector 
 
-1. From the root directory run `docker compose up --build -d` this will start the `VTT_connector` and `VTT_UI` in detached mode	
+1. Open the file 'docker-compose.yml' and edit the line 36 by replacing the '*server_ip / localhost*" to match with your deployment environment (e.g., if you are running the connector in localhost, the line would be '- CONNECTOR_URL=https://localhost:8081' 
 
-2. Once the services have started you can navigate to `http://localhost:8080` to access the user interface
+2. From the root directory run `docker compose up --build -d` this will start the `VTT_connector` and `VTT_UI` in detached mode	
+
+3. Once the services have started you can navigate to `http://localhost:8080` to access the user interface
 
    Please note that when deploying to a server, `http://localhost:8080` should be replaced with `http://server-ip:8080` to access the user interface
 
