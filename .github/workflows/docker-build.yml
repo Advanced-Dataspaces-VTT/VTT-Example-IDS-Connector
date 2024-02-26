@@ -26,4 +26,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ghcr.io/Advanced-Dataspaces-VTT/VTT-Example-IDS-Connector/dataspaceconnector-development:latest
+          tags: ghcr.io/advanced-dataspaces-vtt/vtt-example-ids-connector/dataspaceconnector-development:latest
