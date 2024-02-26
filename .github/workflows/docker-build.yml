@@ -24,6 +24,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./VTT_connector/
-          file: Dockerfile
+          file: ./Dockerfile
           push: true
           tags: ghcr.io/advanced-dataspaces-vtt/vtt-example-ids-connector/dataspaceconnector-development:latest
