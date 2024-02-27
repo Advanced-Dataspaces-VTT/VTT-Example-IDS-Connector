@@ -1,0 +1,1 @@
+FROM ryankford/vtt-example-connector-ui:latest-amd64

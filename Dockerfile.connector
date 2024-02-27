@@ -1,0 +1,1 @@
+FROM ghcr.io/international-data-spaces-association/dataspace-connector:8.0.2

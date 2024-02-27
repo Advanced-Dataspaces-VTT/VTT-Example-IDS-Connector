@@ -1,8 +1,8 @@
 services:
 
-  connectorb:
-    image: ghcr.io/international-data-spaces-association/dataspace-connector:8.0.2
-    container_name: connectorb
+  connector:
+    build: ./Dockerfile
+    container_name: vtt-connector
     ports:
       - 8081:8081
     environment:
@@ -30,8 +30,8 @@ services:
       - local
 
   ui:
-    image: ryankford/vtt-example-connector-ui:latest-amd64
-    container_name: 'vtt-connector-ui'
+    build: ./Dockerfile.ui
+    container_name: vtt-connector
     environment:
       - CONNECTOR_URL=https://*server_ip / localhost*:8081
       - CONNECTOR_USER=admin
@@ -47,4 +47,3 @@ services:
 networks:
   local:
     driver: bridge
-
