@@ -588,25 +588,64 @@
 			<groupId>de.fhg.aisec.ids</groupId>
 			<artifactId>camel-idscp2</artifactId>
 			<version>${idscp2.version}</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>camel-core</artifactId>
-                    <groupId>org.apache.camel</groupId>
-                </exclusion>
+		</dependency>
+		
+		<!-- https://github.com/International-Data-Spaces-Association/IDS-Messaging-Services -->
+		<dependency>
+			<groupId>ids.messaging</groupId>
+			<artifactId>broker</artifactId>
+			<version>${ids-messaging-services.version}</version>
+			<exclusions>
 				<exclusion>
-					<groupId>de.fraunhofer.iais.eis.ids.infomodel</groupId>
-					<artifactId>java</artifactId>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-log4j12</artifactId>
 				</exclusion>
 				<exclusion>
-					<groupId>de.fraunhofer.iais.eis.ids</groupId>
-					<artifactId>infomodel-serializer</artifactId>
+					<groupId>log4j</groupId>
+					<artifactId>log4j</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>io.jsonwebtoken</groupId>
+					<artifactId>jjwt</artifactId>
+				</exclusion>
+<!--
+				<exclusion>
+					<groupId>org.bouncycastle</groupId>
+					<artifactId>bcpkix-fips</artifactId>
+				</exclusion> 
+-->
+				<exclusion>
+					<groupId>org.bitbucket.b_c</groupId>
+					<artifactId>jose4j</artifactId>
+				</exclusion>
+				<!-- Already included by camel-idscp2 -->
+				<exclusion>
+					<groupId>com.google.guava</groupId>
+					<artifactId>guava</artifactId>
 				</exclusion>
 				<exclusion>
 					<groupId>com.squareup.okhttp3</groupId>
 					<artifactId>okhttp</artifactId>
 				</exclusion>
-            </exclusions>
-        </dependency>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-tx</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-webmvc</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-core</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.springframework</groupId>
+					<artifactId>spring-test</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
 
 		<!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-impl -->
 		<dependency>
@@ -650,7 +689,7 @@
 		<repository>
 			<id>eis-ids-public</id>
 			<name>maven-snapshots</name>
-			<url>https://maven.iais.fraunhofer.de/artifactory/eis-ids-public</url>
+			<url>https://maven.collab-cloud.eu/releases</url>
 			<snapshots>
 				<enabled>true</enabled>
 			</snapshots>
@@ -658,7 +697,7 @@
 				<enabled>true</enabled>
 			</releases>
 		</repository>
-		<!-- exclude old IAIS http-repo from dependencies, not reachable any more -->
+		<!-- exclude old IAIS http-repo from dependencies, not reachable any more 
 		<repository>
 			<releases>
 				<enabled>true</enabled>
@@ -669,6 +708,7 @@
 			<id>eis-public-repo</id>
 			<url>http://maven.iais.fraunhofer.de/artifactory/eis-ids-public</url>
 		</repository>
+		-->
 	</repositories>
 
 	<dependencyManagement>
