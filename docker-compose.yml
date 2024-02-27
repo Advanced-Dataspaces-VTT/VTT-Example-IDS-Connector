@@ -1,7 +1,9 @@
 services:
 
   connector:
-    build: ./Dockerfile
+    build: 
+      context: .
+      dockerfile: ./Dockerfile.connector
     container_name: vtt-connector
     ports:
       - 8081:8081
@@ -30,7 +32,9 @@ services:
       - local
 
   ui:
-    build: ./Dockerfile.ui
+    build: 
+      context: .
+      dockerfile: ./Dockerfile.ui
     container_name: vtt-connector
     environment:
       - CONNECTOR_URL=https://*server_ip / localhost*:8081
