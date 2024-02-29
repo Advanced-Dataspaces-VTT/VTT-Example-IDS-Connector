@@ -1,0 +1,49 @@
+services:
+
+  connector:
+    image: ghcr.io/advanced-dataspaces-vtt/vtt-example-ids-connector/dataspaceconnector-development:latest
+    container_name: vtt-connector
+    ports:
+      - 8081:8081
+    environment:
+      - CONFIGURATION_PATH=/config/config.json
+      - SERVER_PORT=8081
+      - DAPS_URL=https://daps.collab-cloud.eu/auth
+      - DAPS_TOKEN_URL=https://daps.collab-cloud.eu/auth/token
+      - DAPS_KEY_URL=https://daps.collab-cloud.eu/auth/jwks.json
+      - DAPS_INCOMING_DAT_DEFAULT_WELLKNOWN=/jwks.json
+      - SERVER_SSL_KEY-STORE=file:///conf/collab-cloud.p12
+      - SPRING_SECURITY_USER_NAME=admin
+      - SPRING_SECURITY_USER_PASSWORD=password
+
+      # Define the PostgreSQL setup
+      - SPRING.DATASOURCE.URL=jdbc:h2:mem:connectordb;MODE=PostgreSQL
+      - SPRING.DATASOURCE.DRIVERCLASSNAME=org.h2.Driver
+      - SPRING.DATASOURCE.USERNAME=sa
+      - SPRING.DATASOURCE.PASSWORD=password
+      - SPRING.DATASOURCE.HIKARI.AUTO-COMMIT=false
+    volumes:
+      - ./conf/config.json:/config/config.json
+      - ./conf/collab-cloud.p12:/conf/collab-cloud.p12
+      - ./conf/truststore.p12:/config/truststore.p12
+    networks:
+      - local
+
+  ui:
+    image: ghcr.io/advanced-dataspaces-vtt/vtt-example-ids-connector/vtt-connector-ui:latest
+    container_name: vtt-connector-ui
+    environment:
+      - CONNECTOR_URL=https://*server_ip / localhost*:8081
+      - CONNECTOR_USER=admin
+      - CONNECTOR_PASSWORD=password
+    ports:
+      - 8080:8083
+    networks:
+      - local
+    depends_on:
+      - connector
+      
+
+networks:
+  local:
+    driver: bridge
