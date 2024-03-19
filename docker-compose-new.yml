@@ -1,7 +1,7 @@
 services:
 
   connector:
-    image: ghcr.io/advanced-dataspaces-vtt/vtt-example-ids-connector/dataspaceconnector-development:latest
+    image: ghcr.io/advanced-dataspaces-vtt/vtt-example-ids-connector/vtt-connector:latest
     container_name: vtt-connector
     ports:
       - 8081:8081
