@@ -1,7 +1,7 @@
 services:
 
   connector:
-    image: ghcr.io/advanced-dataspaces-vtt/vtt-example-ids-connector/vtt-connector:latest
+    image: ghcr.io/advanced-dataspaces-vtt/vtt-example-ids-connector/vtt-connector:simplified_compose
     container_name: vtt-connector
     ports:
       - 8081:8081
@@ -26,7 +26,7 @@ services:
       - local
 
   ui:
-    image: ghcr.io/advanced-dataspaces-vtt/vtt-example-ids-connector/vtt-connector-ui:latest
+    image: ghcr.io/advanced-dataspaces-vtt/vtt-example-ids-connector/vtt-connector-ui:simplified_compose
     container_name: vtt-connector-ui
     environment:
       - CONNECTOR_URL=https://*server_ip / localhost*:8081

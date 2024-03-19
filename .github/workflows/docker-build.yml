@@ -31,7 +31,7 @@ jobs:
           context: .
           file: ./Dockerfile.connector
           push: true
-          tags: ghcr.io/advanced-dataspaces-vtt/vtt-example-ids-connector/simplified_compose-vtt-connector:1.0.0
+          tags: ghcr.io/advanced-dataspaces-vtt/vtt-example-ids-connector/vtt-connector:simplified_compose
 
       - name: Build and push ui image
         uses: docker/build-push-action@v2
@@ -39,4 +39,4 @@ jobs:
           context: .
           file: ./Dockerfile.ui
           push: true
-          tags: ghcr.io/advanced-dataspaces-vtt/vtt-example-ids-connector/simplified_compose-vtt-connector-ui:1.0.0
+          tags: ghcr.io/advanced-dataspaces-vtt/vtt-example-ids-connector/vtt-connector-ui:simplified_compose
