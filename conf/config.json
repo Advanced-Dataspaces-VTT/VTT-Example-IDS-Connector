@@ -57,6 +57,6 @@
     "@id" : "idsc:CONNECTOR_ONLINE"
   },
   "ids:keyStore" : {
-    "@id" : "file:///conf/collab-cloud.p12"
+    "@id" : "file:///config/collab-cloud.p12"
   }
 }
