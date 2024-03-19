@@ -22,10 +22,6 @@ services:
       - SPRING.DATASOURCE.USERNAME=sa
       - SPRING.DATASOURCE.PASSWORD=password
       - SPRING.DATASOURCE.HIKARI.AUTO-COMMIT=false
-    #volumes:
-    #  - ./conf/config.json:/config/config.json
-    #  - ./conf/collab-cloud.p12:/conf/collab-cloud.p12
-    #  - ./conf/truststore.p12:/config/truststore.p12
     networks:
       - local
 
