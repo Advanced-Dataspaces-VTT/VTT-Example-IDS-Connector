@@ -13,6 +13,12 @@
 6. Commit and push the changes to your new branch and then wait for the  to pass
 7. After a successful build you will find your [image](https://github.com/Advanced-Dataspaces-VTT/VTT-Example-IDS-Connector/pkgs/container/vtt-example-ids-connector%2Fvtt-connector) here
 8. Then all you need to distribute will be the content of the [docker-compose.yml](docker-compose.yml) file
+9. To run the application execute the following commands
+```docker login ghcr.io -u USERNAME -p TOKEN```
+```docker compose pull```
+```docker compose up```
+
+(Note: If you use sudo to login you must then use sudo for every other command)
 
 
 
