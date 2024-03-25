@@ -1,7 +1,7 @@
 services:
 
   connector:
-    image: ghcr.io/advanced-dataspaces-vtt/vtt-example-ids-connector/vtt-connector:simplified_compose
+    image: ghcr.io/advanced-dataspaces-vtt/vtt-example-ids-connector/vtt-connector:osmeidsforw2
     container_name: vtt-connector
     ports:
       - 8081:8081
@@ -26,10 +26,10 @@ services:
       - local
 
   ui:
-    image: ghcr.io/advanced-dataspaces-vtt/vtt-example-ids-connector/vtt-connector-ui:simplified_compose
+    image: ghcr.io/advanced-dataspaces-vtt/vtt-example-ids-connector/vtt-connector-ui:osmeidsforw2
     container_name: vtt-connector-ui
     environment:
-      - CONNECTOR_URL=https://*server_ip / localhost*:8081
+      - CONNECTOR_URL=https://130.188.160.22:8081
       - CONNECTOR_USER=admin
       - CONNECTOR_PASSWORD=password
     ports:
