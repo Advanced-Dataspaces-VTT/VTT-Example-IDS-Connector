@@ -46,7 +46,7 @@ services:
     image: ryankford/vtt-example-connector-ui:latest-amd64
     container_name: 'vtt-connector-ui'
     environment:
-      - CONNECTOR_URL=https://*changeThisToYourVMip*:8081
+      - CONNECTOR_URL=https:130.188.160.22//:8081
       - CONNECTOR_USER=admin
       - CONNECTOR_PASSWORD=password
     ports:
