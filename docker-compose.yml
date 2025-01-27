@@ -1,4 +1,3 @@
-version: '3.0'
 services:
   postgresa:
     image: postgres:13
@@ -12,7 +11,7 @@ services:
     volumes:
       - connector-dataa:/var/lib/postgresql/data
     networks:
-      - local
+      - vtt_connector_default
 
   connector:
     image: ghcr.io/advanced-dataspaces-vtt/vtt-example-ids-connector/vtt-connector:simplified_compose
@@ -37,9 +36,17 @@ services:
       - SPRING_DATASOURCE_PASSWORD=password
       - SPRING_JPA_DATABASE_PLATFORM=org.hibernate.dialect.PostgreSQLDialect
     networks:
-      - local
+      - vtt_connector_default
     depends_on:
       - postgresa
+networks:
+  vtt_connector_default:
+  trustee-backend:
+    external: true
+    name: trustee-backend
+  portainer_default:
+    external: true
+    name: portainer_default
 
 
 
