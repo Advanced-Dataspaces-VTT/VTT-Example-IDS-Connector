@@ -39,6 +39,8 @@ services:
       - vtt_connector_default
     depends_on:
       - postgresa
+volumes:
+  connector-dataa: {}
 networks:
   vtt_connector_default:
   trustee-backend:
