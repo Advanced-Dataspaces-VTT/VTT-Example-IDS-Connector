@@ -18,7 +18,7 @@ services:
     image: ghcr.io/advanced-dataspaces-vtt/vtt-example-ids-connector/vtt-connector:simplified_compose
     container_name: vtt-connector
     ports:
-      - 8081:8081
+      - 3900:8081
     environment:
       - CONFIGURATION_PATH=/config/config.json
       - SERVER_PORT=8081
@@ -42,23 +42,4 @@ services:
       - postgresa
 
 
-  ui:
-    image: ryankford/vtt-example-connector-ui:latest-amd64
-    container_name: 'vtt-connector-ui'
-    environment:
-      - CONNECTOR_URL=https:130.188.160.22//:8081
-      - CONNECTOR_USER=admin
-      - CONNECTOR_PASSWORD=password
-    ports:
-      - 8080:8083
-    networks:
-      - local
-    depends_on:
-      - connector
 
-volumes:
-  connector-dataa: {}
-
-networks:
-  local:
-    driver: bridge
