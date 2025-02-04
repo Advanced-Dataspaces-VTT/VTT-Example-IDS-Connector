@@ -1,3 +1,4 @@
+version: '3.0'
 services:
   postgresa:
     image: postgres:13
@@ -11,13 +12,13 @@ services:
     volumes:
       - connector-dataa:/var/lib/postgresql/data
     networks:
-      - vtt_connector_default
+      - local
 
   connector:
     image: ghcr.io/advanced-dataspaces-vtt/vtt-example-ids-connector/vtt-connector:simplified_compose
     container_name: vtt-connector
     ports:
-      - 3900:8081
+      - 8081:8081
     environment:
       - CONFIGURATION_PATH=/config/config.json
       - SERVER_PORT=8081
@@ -36,19 +37,28 @@ services:
       - SPRING_DATASOURCE_PASSWORD=password
       - SPRING_JPA_DATABASE_PLATFORM=org.hibernate.dialect.PostgreSQLDialect
     networks:
-      - vtt_connector_default
+      - local
     depends_on:
       - postgresa
+
+
+  ui:
+    image: ryankford/vtt-example-connector-ui:latest-amd64
+    container_name: 'vtt-connector-ui'
+    environment:
+      - CONNECTOR_URL=https://*changeThisToYourVMip:8081
+      - CONNECTOR_USER=admin
+      - CONNECTOR_PASSWORD=password
+    ports:
+      - 8080:8083
+    networks:
+      - local
+    depends_on:
+      - connector
+
 volumes:
   connector-dataa: {}
+
 networks:
-  vtt_connector_default:
-  trustee-backend:
-    external: true
-    name: trustee-backend
-  portainer_default:
-    external: true
-    name: portainer_default
-
-
-
+  local:
+    driver: bridge
