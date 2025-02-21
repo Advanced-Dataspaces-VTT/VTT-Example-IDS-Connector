@@ -36,7 +36,7 @@ services:
       - SPRING_DATASOURCE_PASSWORD=password
       - SPRING_JPA_DATABASE_PLATFORM=org.hibernate.dialect.PostgreSQLDialect
       # Additional IDS Connector settings
-      - IDS_CONECTOR_CREDENTIAL=YWRtaW46cGFzc3dvcmQ=
+      - IDS_CONECTOR_CREDENTIAL="YWRtaW46cGFzc3dvcmQ="
       - IDS_INTERNAL_CONECTOR_ENDPOINT=https://oness.trustee-1.ics.forth.gr
       - IDS_PUBLIC_CONECTOR_ENDPOINT=https://trustee-ids-connector-consumer:8081
     networks:
