@@ -1,0 +1,392 @@
+{
+	"info": {
+		"_postman_id": "2128d318-aaff-426f-9239-2cb863f5954d",
+		"name": "consume_offerings",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22734598",
+		"_collection_link": "https://bold-star-475231.postman.co/workspace/12f96b2d-6972-469b-86b3-fe23e7f9d829/collection/22734598-2128d318-aaff-426f-9239-2cb863f5954d?action=share&source=collection_link&creator=22734598"
+	},
+	"item": [
+		{
+			"name": "Description request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"strictSSL": false
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{consumerConnectorURL}}/api/ids/description?recipient={{dataProviderAccessURL}}",
+					"host": [
+						"{{consumerConnectorURL}}"
+					],
+					"path": [
+						"api",
+						"ids",
+						"description"
+					],
+					"query": [
+						{
+							"key": "recipient",
+							"value": "{{dataProviderAccessURL}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Description request with catalogue",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.json();",
+							"",
+							"const offerURL = response[\"ids:offeredResource\"]?.[0]?.[\"@id\"];",
+							"const artifactURL = response[\"ids:offeredResource\"]?.[0]?.[\"ids:representation\"]?.[0]?.[\"ids:instance\"]?.[0]?.[\"@id\"];",
+							"",
+							"pm.environment.set(\"createdOfferURL\", offerURL);",
+							"pm.environment.set(\"createdArtifactURL\", artifactURL);",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"strictSSL": false
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{consumerConnectorURL}}/api/ids/description?recipient={{dataProviderAccessURL}}&elementId={{createdCatalogURL}}",
+					"host": [
+						"{{consumerConnectorURL}}"
+					],
+					"path": [
+						"api",
+						"ids",
+						"description"
+					],
+					"query": [
+						{
+							"key": "recipient",
+							"value": "{{dataProviderAccessURL}}"
+						},
+						{
+							"key": "elementId",
+							"value": "{{createdCatalogURL}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Contract request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const agreementURL = pm.response.json()[\"_links\"][\"artifacts\"][\"href\"];\r",
+							"\r",
+							"\r",
+							"pm.environment.set(\"createdAgreementURL\", agreementURL.replace('{?page,size}',''));\r",
+							"\r",
+							"console.log(pm.response.json()); // Log the response from the previous request\r",
+							"console.log(pm.environment.get(\"createdCatalogURL\")); // Log the value of the variable \r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"strictSSL": false
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n  {\r\n  \"@type\" : \"ids:Permission\",\r\n  \"@id\" : \"{{createdRuleURL}}\",\r\n  \"ids:description\" : [ {\r\n  \"@value\" : \"provide-access\",\r\n  \"@type\" : \"http://www.w3.org/2001/XMLSchema#string\"\r\n  } ],\r\n  \"ids:title\" : [ {\r\n  \"@value\" : \"Example Usage Policy\",\r\n  \"@type\" : \"http://www.w3.org/2001/XMLSchema#string\"\r\n  } ],\r\n  \"ids:action\" : [ {\r\n  \"@id\" : \"https://w3id.org/idsa/code/USE\"\r\n  } ],\r\n  \"ids:target\": \"{{createdArtifactURL}}\"\r\n  }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{consumerConnectorURL}}/api/ids/contract?recipient={{dataProviderAccessURL}}&resourceIds={{createdResourceURL}}&artifactIds={{createdArtifactURL}}&download=false",
+					"host": [
+						"{{consumerConnectorURL}}"
+					],
+					"path": [
+						"api",
+						"ids",
+						"contract"
+					],
+					"query": [
+						{
+							"key": "recipient",
+							"value": "{{dataProviderAccessURL}}"
+						},
+						{
+							"key": "resourceIds",
+							"value": "{{createdResourceURL}}"
+						},
+						{
+							"key": "artifactIds",
+							"value": "{{createdArtifactURL}}"
+						},
+						{
+							"key": "download",
+							"value": "false"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Agreement",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"const artifactDataUrl = pm.response.json()[\"_embedded\"][\"artifacts\"][0][\"_links\"][\"data\"][\"href\"];\r",
+							"\r",
+							"pm.environment.set(\"createdArtifactDataUrl\", artifactDataUrl);\r",
+							"\r",
+							"\r",
+							"console.log(pm.response.json()); // Log the response from the previous request\r",
+							"console.log(pm.environment.get(\"createdAgreementURL\")); // Log the value of the variable"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"strictSSL": false
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{createdAgreementURL}}",
+					"host": [
+						"{{createdAgreementURL}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get artifact (data)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.sendRequest({\r",
+							"    url: 'http://trustee-1.ics.forth.gr:3010/transactions/',\r",
+							"    method: 'POST',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json',\r",
+							"        'atr-api-key': '6ZIpSUnW4m1pOEtbq3TH9xRd2FrcXLIL'\r",
+							"    },\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({\r",
+							"            providerID: pm.environment.get(\"providerConnectorURL\"),\r",
+							"            genericID1: pm.environment.get(\"consumerConnectorURL\"),\r",
+							"            genericID2: pm.environment.get(\"createdAgreementURL\"),\r",
+							"            genericID3: \"session-\" + Date.now(),\r",
+							"            datetime1: new Date().toISOString(),\r",
+							"            datetime2: new Date(Date.now() + 2000).toISOString(),\r",
+							"            textField1: \"IDS artifact received\",\r",
+							"            textField2: \"Automated ATR log\",\r",
+							"            textField3: \"\",\r",
+							"            amount: \"1\",\r",
+							"            domain1: \"EDUCATION\",\r",
+							"            domain2: \"EUROPE\",\r",
+							"            domain3: \"UNIVERSITIES\",\r",
+							"            country: \"GR\",\r",
+							"            year: \"2025\",\r",
+							"            description: \"Data transaction from IDS Provider to Consumer\",\r",
+							"            content: pm.environment.get(\"createdArtifactURL\"),\r",
+							"            content1: pm.environment.get(\"createdAgreementURL\"),\r",
+							"            content2: pm.environment.get(\"createdArtifactDataUrl\"),\r",
+							"            content3: \"\"\r",
+							"        })\r",
+							"    }\r",
+							"}, function (err, res) {\r",
+							"    if (err) {\r",
+							"        console.error(\"ATR log failed:\", err);\r",
+							"    } else {\r",
+							"        console.log(\"ATR log status:\", res.status);\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"strictSSL": false,
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "password",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "atr-api-key",
+						"value": "6ZIpSUnW4m1pOEtbq3TH9xRd2FrcXLIL",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{createdArtifactDataUrl}}",
+					"host": [
+						"{{createdArtifactDataUrl}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey"
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
