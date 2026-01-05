@@ -19,6 +19,10 @@ services:
     ports:
       - 3900:8081
     environment:
+      - HTTP_TIMEOUT_READ=40000
+      - HTTP_TIMEOUT_CONNECT=30000
+      - HTTP_TIMEOUT_WRITE=40000
+      - HTTP_TIMEOUT_CALL=0
       - CONFIGURATION_PATH=/config/config.json
       - SERVER_PORT=8081
       - DAPS_URL=https://daps.collab-cloud.eu/auth
